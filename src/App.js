@@ -1,4 +1,4 @@
 function App() {
-    return <div className="App text-3xl font-bold underline">hello world</div>;
+    return <div className="text-xl text-green-800 font-bold">initial and setup ytb app</div>
 }
 export default App;
