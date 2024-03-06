@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '~/components/Navbar';
+import Sidebar from '~/components/Sidebar';
 
 export default function Home() {
     return (
@@ -7,7 +8,9 @@ export default function Home() {
             <div style={{ height: '7.5vh' }}>
                 <Navbar />
             </div>
-            <div className="flex" style={{ height: '92.5' }}></div>
+            <div className="flex" style={{ height: '92.5vh' }}>
+                <Sidebar />
+            </div>
         </div>
     );
 }
