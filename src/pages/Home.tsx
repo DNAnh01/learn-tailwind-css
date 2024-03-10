@@ -33,7 +33,7 @@ export default function Home() {
                     <InfiniteScroll
                         dataLength={videos.length}
                         next={() => dispatch(getHomePageVideos(true))}
-                        hasMore={videos.length < 500}
+                        hasMore={videos.length < 100}
                         loader={<Spinner />}
                         height={650}
                     >

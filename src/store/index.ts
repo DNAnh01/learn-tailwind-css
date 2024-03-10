@@ -1,10 +1,12 @@
 import { PayloadAction, configureStore, createSlice } from '@reduxjs/toolkit';
-import { InitialSate } from '~/Types';
+import { InitialState } from '~/Types';
 import { getHomePageVideos } from './reducers/getHomePageVideos';
 import { getSearchPageVideos } from './reducers/getSearchPageVideos';
+import { getVideoDetails } from './reducers/getVideoDetails';
+import { getRecommendedVideos } from './reducers/getRecommendedVideos';
 
 // Initialize the initial state of the application with the InitialSate type
-const initialState: InitialSate = {
+const initialState: InitialState = {
     videos: [],
     currentPlaying: null,
     searchTerm: '',
@@ -37,6 +39,12 @@ const YoutubeSlide = createSlice({
         builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
             state.videos = action.payload.parsedData;
             state.nextPageToken = action.payload.nextPageToken;
+        });
+        builder.addCase(getVideoDetails.fulfilled, (state, action) => {
+            state.currentPlaying = action.payload;
+        });
+        builder.addCase(getRecommendedVideos.fulfilled, (state, action) => {
+            state.recommendedVideos = action.payload.parsedData;
         });
     },
 });
