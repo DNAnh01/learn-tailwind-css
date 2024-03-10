@@ -1,6 +1,7 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, configureStore, createSlice } from '@reduxjs/toolkit';
 import { InitialSate } from '~/Types';
 import { getHomePageVideos } from './reducers/getHomePageVideos';
+import { getSearchPageVideos } from './reducers/getSearchPageVideos';
 
 // Initialize the initial state of the application with the InitialSate type
 const initialState: InitialSate = {
@@ -21,9 +22,19 @@ const YoutubeSlide = createSlice({
             state.videos = [];
             state.nextPageToken = null;
         },
+        changeSearchTerm: (state, action: PayloadAction<string>) => {
+            state.searchTerm = action.payload;
+        },
+        clearSearchTerm: (state) => {
+            state.searchTerm = '';
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
+            state.videos = action.payload.parsedData;
+            state.nextPageToken = action.payload.nextPageToken;
+        });
+        builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
             state.videos = action.payload.parsedData;
             state.nextPageToken = action.payload.nextPageToken;
         });
@@ -39,7 +50,7 @@ export const store = configureStore({
     },
 });
 
-export const { clearVideos } = YoutubeSlide.actions;
+export const { clearVideos, changeSearchTerm, clearSearchTerm } = YoutubeSlide.actions;
 // Define a new type RootState based on the return type of store.getState
 // RootState will be the type of the entire application state
 export type RootState = ReturnType<typeof store.getState>;
