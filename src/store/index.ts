@@ -16,7 +16,12 @@ const initialState: InitialSate = {
 const YoutubeSlide = createSlice({
     name: 'youtubeApp',
     initialState,
-    reducers: {},
+    reducers: {
+        clearVideos: (state) => {
+            state.videos = [];
+            state.nextPageToken = null;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
             state.videos = action.payload.parsedData;
@@ -33,6 +38,8 @@ export const store = configureStore({
         youtubeApp: YoutubeSlide.reducer,
     },
 });
+
+export const { clearVideos } = YoutubeSlide.actions;
 // Define a new type RootState based on the return type of store.getState
 // RootState will be the type of the entire application state
 export type RootState = ReturnType<typeof store.getState>;
