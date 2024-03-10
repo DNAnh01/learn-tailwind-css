@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ytb-clone/static/css/main.ab46bc41.css",
+    "main.js": "/ytb-clone/static/js/main.e2ec8457.js",
+    "index.html": "/ytb-clone/index.html",
+    "main.ab46bc41.css.map": "/ytb-clone/static/css/main.ab46bc41.css.map",
+    "main.e2ec8457.js.map": "/ytb-clone/static/js/main.e2ec8457.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ab46bc41.css",
+    "static/js/main.e2ec8457.js"
+  ]
+}
